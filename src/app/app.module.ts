@@ -5,6 +5,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IMaskModule } from 'angular-imask';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { IMaskModule } from 'angular-imask';
     BrowserModule,
     AppRoutingModule,
     IMaskModule,
-    NgMultiSelectDropDownModule
+    NgMultiSelectDropDownModule.forRoot(),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

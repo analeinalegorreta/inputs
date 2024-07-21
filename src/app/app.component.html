@@ -4,16 +4,31 @@
     <input type="" class="form-control"  aria-describedby="emailHelp"
     [imask]  = "mask"
 		[unmask] = "true"
-    placeholder="">
+    placeholder=""
+    [(ngModel)]="value"
+    >
 
-  </div>
+  </div><br>
   <div class="form-group">
     <label for="exampleInputEmail1">Curp</label>
     <input type="" class="form-control"  aria-describedby="emailHelp"
     oninput="this.value = this.value.toUpperCase()"
-    [imask]  = "curp"
-		[unmask] = "true"
+    maxlength="18"
     placeholder="">
   </div>
 </div>
 
+
+<ng-multiselect-dropdown
+  [placeholder]="'custom placeholder'"
+  [settings]="dropdownSettings"
+  [data]="dropdownList"
+  [(ngModel)]="selectedItems"
+  (onSelect)="onItemSelect($event)"
+  (onSelectAll)="onSelectAll($event)"
+>
+</ng-multiselect-dropdown>
+
+<div>
+  <button class="primary" (click)="prueba()">Prueba</button>
+</div>
