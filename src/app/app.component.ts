@@ -12,9 +12,6 @@ export class AppComponent implements OnInit {
 
   public value = 'Clear me';
 
-
-
-
   public mask =
     [
       {
@@ -61,6 +58,11 @@ export class AppComponent implements OnInit {
   public dropdownSettings: IDropdownSettings = {};
 
 
+  public dropdownConsulta: any = [];
+  public selectedItemsConsulta: any = [];
+  public dropdownSettingsConsulta: IDropdownSettings = {};
+
+
   onItemSelect(item: any) {
     console.log(item);
   }
@@ -71,49 +73,59 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
-    // this.dropdownList = [
-    //   { item_id: 1, item_text: 'Mumbai' },
-    //   { item_id: 2, item_text: 'Bangaluru' },
-    //   { item_id: 3, item_text: 'Pune' },
-    //   { item_id: 4, item_text: 'Navsari' },
-    //   { item_id: 5, item_text: 'New Delhi' },
-    //   { item_id: 10, item_text: 'Prueba' }
-    // ];
 
-    let temporalCities = []
 
     this.PruebasService.getCities().subscribe(resp => {
-      console.log(resp)
-      resp.cities.forEach((elem)=>{
+      resp.cities.forEach((elem) => {
         this.dropdownList.push({
-          name: elem.id+' - ' + elem.name,
-          id:elem.id
+          label: elem.id + ' - ' + elem.name,
+          value: elem.id
         })
       })
 
-console.log(this.dropdownList);
+    })
 
-
-
-    }
-
-
-    )
+    this.PruebasService.getProd().subscribe(resp => {
+      console.log(resp);
+      
+      resp.forEach((elem) => {
+        this.dropdownConsulta.push({
+          label: elem.cClaveProdServ + ' - ' + elem.descripcion,
+          value: elem.id
+        })
+      })
+      console.log( this.dropdownConsulta);
+      
+    })
     // este seria el que estariamos mandando al back
 
     this.selectedItems = [
-      //  { item_id: 3, item_text: 'Pune' }, //datos seleccionados por default 
+        //  { item_id: 3, item_text: 'Pune' }, //datos seleccionados por default 
 
-    ];
+      ];
 
     this.dropdownSettings = {
       singleSelection: false,
-      idField: 'id',
-      textField: 'name',
+      idField: 'value',
+      textField: 'label',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 3,
       allowSearchFilter: true
+    };
+
+
+    this.dropdownSettingsConsulta = {
+      singleSelection: true,
+      idField: 'value',
+      textField: 'label',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+
+      allowSearchFilter: true,
+
+      closeDropDownOnSelection:false
+
     };
 
 

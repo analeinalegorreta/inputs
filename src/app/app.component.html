@@ -22,12 +22,27 @@
 
 
   @if(dropdownList.length>0){
-    <ng-multiselect-dropdown 
+    <ng-multiselect-dropdown id="cities"
 
     [placeholder]="'Ciudades'"
     [settings]="dropdownSettings"
     [data]="dropdownList"
     [(ngModel)]="selectedItems"
+    (onSelect)="onItemSelect($event)"
+    (onSelectAll)="onSelectAll($event)"
+  >
+  </ng-multiselect-dropdown><br>
+  }
+
+
+  
+  @if(dropdownConsulta.length>0){
+    <ng-multiselect-dropdown id="buscador"
+
+    [placeholder]="'Carga'"
+    [settings]="dropdownSettingsConsulta"
+    [data]="dropdownConsulta"
+    [(ngModel)]="selectedItemsConsulta"
     (onSelect)="onItemSelect($event)"
     (onSelectAll)="onSelectAll($event)"
   >

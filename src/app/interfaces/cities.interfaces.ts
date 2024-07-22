@@ -6,6 +6,29 @@ export interface City {
 
   export interface respCities {
     cities:City[];
- 
+  }
+
+
+
+  export interface Product {
+    id: number;
+    cClaveProdServ:  string;
+    descripcion:  string;
    
   }
+
+  export interface respProduct {
+    product:Product[];
+  }
+
+
+
+
+
+
+
+
+
+
+
+

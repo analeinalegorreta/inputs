@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { City, respCities } from './interfaces/cities.interfaces';
+import { City, Product, respCities, respProduct } from './interfaces/cities.interfaces';
 import { map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -10,10 +10,8 @@ export class PruebasService {
 
   constructor(private http: HttpClient) { 
 
-    console.log("pruebas")
-    this.getCities().subscribe(resp =>
-      console.log(resp)
-      )
+
+
    
   }
 
@@ -23,6 +21,10 @@ export class PruebasService {
   }
 
 
+  getProd(): Observable<Product[]> {
+    return this.http.get<Product[]>(`https://com-next-tech-mapeador-catalogos-qa-sw2nnhxr3q-uc.a.run.app/Catalogos/clave_producto_servicio_by_desc/animal`)
+      
+  }
 
 
 
