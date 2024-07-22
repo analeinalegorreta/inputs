@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { PruebasService } from './pruebas.service';
+import { City } from './interfaces/cities.interfaces';
 
 @Component({
   selector: 'app-root',
@@ -8,49 +10,51 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 })
 export class AppComponent implements OnInit {
 
-  public  value = 'Clear me';
+  public value = 'Clear me';
+
+
 
 
   public mask =
-  [
-    {
-      mask: '', // To hide % when entered digits are removed
-    },
-    {
-      mask: '$num',
-      lazy: false, // Make placeholder always visible
-      blocks: {
-        num: {
-          mask: Number,
-          thousandsSeparator: ',',
-          scale: 2, // digits after decimal
-          signed: true, // allow negative
-          normalizeZeros: false, // appends or removes zeros at ends
-          radix: '.', // fractional delimiter
-          padFractionalZeros: false, // if true, then pads zeros at end to the length of scale
+    [
+      {
+        mask: '', // To hide % when entered digits are removed
+      },
+      {
+        mask: '$num',
+        lazy: false, // Make placeholder always visible
+        blocks: {
+          num: {
+            mask: Number,
+            thousandsSeparator: ',',
+            scale: 2, // digits after decimal
+            signed: true, // allow negative
+            normalizeZeros: false, // appends or removes zeros at ends
+            radix: '.', // fractional delimiter
+            padFractionalZeros: false, // if true, then pads zeros at end to the length of scale
+          },
         },
       },
-    },
-  ];
+    ];
 
 
 
   public curp = {
-  mask: '',
-  signed: false,
-  scale: 5, // No decimal allowed
-};
+    mask: '',
+    signed: false,
+    scale: 5, // No decimal allowed
+  };
+
+
+
+  constructor(private PruebasService: PruebasService) { }
 
 
 
 
 
 
-
-
-
-
-// Atributos de clase
+  // Atributos de clase
 
   public dropdownList: any = [];
   public selectedItems: any = [];
@@ -72,20 +76,34 @@ export class AppComponent implements OnInit {
       { item_id: 2, item_text: 'Bangaluru' },
       { item_id: 3, item_text: 'Pune' },
       { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' }
+      { item_id: 5, item_text: 'New Delhi' },
+      { item_id: 10, item_text: 'Prueba' }
     ];
 
+    let temporalCities = []
+
+    this.PruebasService.getCities().subscribe(resp => {
+      console.log(resp)
+
+      this.dropdownList = resp.cities
+
+
+
+    }
+
+
+    )
     // este seria el que estariamos mandando al back
 
     this.selectedItems = [
-      { item_id: 3, item_text: 'Pune' },
-    
+      //  { item_id: 3, item_text: 'Pune' }, //datos seleccionados por default 
+
     ];
 
     this.dropdownSettings = {
       singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
+      idField: 'id',
+      textField: 'name',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 3,
@@ -97,10 +115,10 @@ export class AppComponent implements OnInit {
 
 
 
-prueba(){
-  console.log(this.value);
-  
-}
+  prueba() {
+    console.log(this.value);
+
+  }
 
 
 
