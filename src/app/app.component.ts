@@ -71,21 +71,27 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
-    this.dropdownList = [
-      { item_id: 1, item_text: 'Mumbai' },
-      { item_id: 2, item_text: 'Bangaluru' },
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' },
-      { item_id: 10, item_text: 'Prueba' }
-    ];
+    // this.dropdownList = [
+    //   { item_id: 1, item_text: 'Mumbai' },
+    //   { item_id: 2, item_text: 'Bangaluru' },
+    //   { item_id: 3, item_text: 'Pune' },
+    //   { item_id: 4, item_text: 'Navsari' },
+    //   { item_id: 5, item_text: 'New Delhi' },
+    //   { item_id: 10, item_text: 'Prueba' }
+    // ];
 
     let temporalCities = []
 
     this.PruebasService.getCities().subscribe(resp => {
       console.log(resp)
+      resp.cities.forEach((elem)=>{
+        this.dropdownList.push({
+          name: elem.id+' - ' + elem.name,
+          id:elem.id
+        })
+      })
 
-      this.dropdownList = resp.cities
+console.log(this.dropdownList);
 
 
 

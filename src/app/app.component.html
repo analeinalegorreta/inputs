@@ -1,6 +1,6 @@
 <div class="container mt-5">
 
-  <div class="form-group ">
+  <div class="form-group mb-2 ">
     <label for="exampleInputEmail1">V Unitario</label>
     <input type="" class="form-control"  aria-describedby="emailHelp"
     [imask]  = "mask"
@@ -9,28 +9,32 @@
     [(ngModel)]="value"
     >
 
-  </div><br>
-  <div class="form-group">
+  </div>
+  <div class="form-group mb-3">
     <label for="exampleInputEmail1">Curp</label>
     <input type="" class="form-control"  aria-describedby="emailHelp"
     oninput="this.value = this.value.toUpperCase()"
     maxlength="18"
     placeholder="">
-  </div><br>
+  </div>
 
 
 
 
+  @if(dropdownList.length>0){
+    <ng-multiselect-dropdown 
 
-<ng-multiselect-dropdown
-  [placeholder]="'Ciudades'"
-  [settings]="dropdownSettings"
-  [data]="dropdownList"
-  [(ngModel)]="selectedItems"
-  (onSelect)="onItemSelect($event)"
-  (onSelectAll)="onSelectAll($event)"
->
-</ng-multiselect-dropdown><br>
+    [placeholder]="'Ciudades'"
+    [settings]="dropdownSettings"
+    [data]="dropdownList"
+    [(ngModel)]="selectedItems"
+    (onSelect)="onItemSelect($event)"
+    (onSelectAll)="onSelectAll($event)"
+  >
+  </ng-multiselect-dropdown><br>
+  }
+
+
 
 <div>
   <button class="primary" (click)="prueba()">Prueba</button>
