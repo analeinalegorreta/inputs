@@ -121,10 +121,10 @@ export class AppComponent implements OnInit {
       textField: 'label',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
-
+      itemsShowLimit: 5,
       allowSearchFilter: true,
-
-      closeDropDownOnSelection:false
+      limitSelection: 7,
+      enableCheckAll:true
 
     };
 
