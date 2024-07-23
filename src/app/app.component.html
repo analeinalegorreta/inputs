@@ -15,7 +15,12 @@
     <input type="" class="form-control"  aria-describedby="emailHelp"
     oninput="this.value = this.value.toUpperCase()"
     maxlength="18"
-    placeholder="">
+    placeholder=""
+    [imask]="{mask:'aaaa000000aaaaaa00'}"
+		[unmask] = "true"
+
+    >
+    
   </div>
 
 
@@ -39,11 +44,14 @@
   @if(dropdownConsulta.length>0){
     <ng-multiselect-dropdown id="buscador"  
     [placeholder]="'Carga'"
+    class="no-checkbox"
     [settings]="dropdownSettingsConsulta"
     [data]="dropdownConsulta"
     [(ngModel)]="selectedItemsConsulta"
     (onSelect)="onItemSelect($event)"
     (onSelectAll)="onSelectAll($event)"
+    (onFilterChange)="onFilterChange($event)"
+    
   >
   </ng-multiselect-dropdown><br>
   }

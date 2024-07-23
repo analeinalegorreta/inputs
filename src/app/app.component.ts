@@ -37,11 +37,15 @@ export class AppComponent implements OnInit {
 
 
   public curp = {
-    mask: '',
-    signed: false,
-    scale: 5, // No decimal allowed
+    
+    // mask: '',
+    // signed: false,
+    // scale: 5, // No decimal allowed
   };
 
+
+
+  
 
 
   constructor(private PruebasService: PruebasService) { }
@@ -94,7 +98,14 @@ export class AppComponent implements OnInit {
           value: elem.id
         })
       })
-      console.log( this.dropdownConsulta);
+
+      // let arreglo = [];
+      // arreglo = ["texto"];
+      // while(arreglo.length) {
+      //   arreglo.pop();
+      // }
+      // arreglo.push("texto")
+      // console.log( this.dropdownConsulta);
       
     })
     // este seria el que estariamos mandando al back
@@ -129,6 +140,15 @@ export class AppComponent implements OnInit {
     };
 
 
+  }
+
+
+  onFilterChange(event:any) {
+    if(event.length >= 3) {
+      console.log(event);
+
+    }
+    
   }
 
 
